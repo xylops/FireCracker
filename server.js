@@ -6,6 +6,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 var routes = require('./backend/route/api');
+var auth = require('./backend/route/auth')
 var config = require('./backend/config')
 
 //connect to database and set auto reconnect
@@ -28,11 +29,12 @@ try {
 }
 
 //socket.io call
-var authentication = require('./backend/route/auth')(io);
-var file2 = require('./backend/route/file2')(io);
-
+// var authentication = require('./backend/route/file1')(io);
+// var file2 = require('./backend/route/file2')(io);
+//setting public folder
 app.use(express.static('./backend/public'));
 app.use('/', routes)
+app.use('/auth', auth)
 
 const PORT = process.env.PORT || 3000;
 

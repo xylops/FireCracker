@@ -1,9 +1,9 @@
  var redux = require('redux');
- var {searchTextReducer} = require('reducers');
+ var {authentication} = require('../reducers/authReducers');
 
  export var configure = (initialState = {})=>{
     var reducers = redux.combineReducers({
-        searchTextReducer
+        authentication
     })
 
     var store = redux.createStore(reducers, initialState,redux.compose(

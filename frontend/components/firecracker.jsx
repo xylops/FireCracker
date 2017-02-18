@@ -1,14 +1,10 @@
 var React = require('react');
 var {connect} = require('react-redux')
 import io from 'socket.io-client';
-let socket = io();
+var socket = io();
 // var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 var firecracker = React.createClass({
-    componentWillMount:function(){
-        // socket.emit('file1Event');
-        // socket.emit('file2Event');
-    },
     render:function(){
         var path = this.props.location.pathname;
         var segment = path.split('/')[1] || 'root';

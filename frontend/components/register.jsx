@@ -1,23 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import io from 'socket.io-client';
-let socket = io();
+
+var authAPI = require('../api/authAPI')
 //material-ui
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 var Register = React.createClass({
-    componentWillMount:function(){
-        socket.on('registerCallback', function(data){
-            console.log(data)
-        })
-    },
     handleRegister:function(){
         var id = this.refs.id.getValue();
         var pw = this.refs.pw. getValue();
         var pw2 = this.refs.pw2.getValue();
 
-        socket.emit('register', {id, pw, pw2})
+        authAPI.register(id, pw, pw2).then((res)=>{
+            if(res.data.success){
+                this.props.router.push('/')
+            }
+        })
     },
     render:function(){
         return (
