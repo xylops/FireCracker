@@ -29,6 +29,7 @@ var Login = React.createClass({
         })
         authAPI.authenticate(id, pw).then(function(res){
             that.setState({loading: false})
+            service.setToken(res.data.token)
             if(res.data.success){
                 that.props.router.push('/dashboard')
             }else{
